@@ -34,7 +34,7 @@ A modern, feature-rich Neovim configuration focused on performance, aesthetics, 
 mv ~/.config/nvim ~/.config/nvim.backup
 
 # Clone the repository
-git clone https://github.com/abzcoding/nv.git ~/.config/nvim
+git clone https://github.com/dipoddp/nvscode.git ~/.config/nvim
 
 # Start Neovim (plugins will be automatically installed)
 nvim

@@ -1,4 +1,30 @@
+-- Autocmds are automatically loaded on the VeryLazy event
+-- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
+--
+-- Add any additional autocmds here
+-- with `vim.api.nvim_create_autocmd`
+--
+-- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
+-- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+
 local aucmd = vim.api.nvim_create_autocmd
+
+aucmd({ "InsertEnter", "CmdlineEnter" }, { pattern = "*", command = "set norelativenumber" })
+aucmd({ "InsertLeave", "CmdlineLeave" }, { pattern = "*", command = "set relativenumber" })
+
+if not vim.g.vscode then
+  -- perform osc52 yank
+  aucmd("TextYankPost", {
+    callback = function()
+      if vim.v.event.operator == "y" or vim.v.event.operator == "c" then
+        require("osc52").copy_register("0")
+      end
+      if vim.v.event.operator == "d" then
+        vim.fn.setreg("+", vim.fn.getreg("0"))
+      end
+    end,
+  })
+end
 
 vim.api.nvim_create_user_command("OverseerRestartLast", function()
   local overseer = require("overseer")
