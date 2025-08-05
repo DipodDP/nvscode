@@ -107,6 +107,7 @@
     {
         "key": "ctrl+j",
         "command": "workbench.action.navigateDown",
+        "when": "!panelFocus && panelVisible"
     },
     {
         "key": "ctrl+h",
@@ -198,4 +199,3 @@
         "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported || terminalHasBeenCreated && terminalPromptBarVisible || terminalProcessSupported && terminalPromptBarVisible"
     },
 ]
-

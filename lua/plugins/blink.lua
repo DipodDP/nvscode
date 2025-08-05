@@ -1,5 +1,6 @@
 return {
   "saghen/blink.cmp",
+  build = 'cargo build --release',
   dependencies = {
     {
       "giuxtaposition/blink-cmp-copilot",

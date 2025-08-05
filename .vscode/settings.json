@@ -187,6 +187,7 @@
     "hediet.vscode-drawio.resizeImages": null,
     "tabnine.experimentalAutoImports": true,
     // === VSCode Neovim Extension ===
+    "vscode-neovim.normalSelectionDebounceTime": 350,
     "vscode-neovim.useWSL": true,
     "vscode-neovim.wslDistribution": "ubuntu",
     "vscode-neovim.highlightGroups.highlights": {
@@ -228,7 +229,7 @@
         "f",
         "h",
         "i",
-        "j",
+        // "j",
         "k",
         "l",
         // "m",
@@ -427,8 +428,6 @@
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
-
-
     // Debug:
     "debug.allowBreakpointsEverywhere": true,
     // "debug.javascript.codelens.npmScripts": "never",

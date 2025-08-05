@@ -23,10 +23,8 @@ map("n", "<LEADER>fw", '<CMD>call VSCodeNotify("workbench.action.findInFiles")<C
 
 -- Active editor
 map("n", "<S-x>", '<CMD>call VSCodeNotify("workbench.action.closeActiveEditor")<CR>', opts)
--- map("n", "<Tab>", '<CMD>call VSCodeNotify("workbench.action.nextEditor")<CR>')
--- map("n", "<S-Tab>", '<CMD>call VSCodeNotify("workbench.action.previousEditor")<CR>')
-map("n", "<Tab>", '<CMD>call VSCodeNotify("workbench.action.moveEditorRightInGroup")<CR>')
-map("n", "<S-Tab>", '<CMD>call VSCodeNotify("workbench.action.moveEditorLeftInGroup")<CR>')
+map("n", "]B", '<CMD>call VSCodeNotify("workbench.action.moveEditorRightInGroup")<CR>')
+map("n", "[B", '<CMD>call VSCodeNotify("workbench.action.moveEditorLeftInGroup")<CR>')
 
 -- Toggles sidebars
 map("n", "<LEADER>e", '<CMD>call VSCodeNotify("workbench.action.toggleSidebarVisibility")<CR>')
