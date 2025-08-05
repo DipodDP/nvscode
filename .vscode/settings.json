@@ -149,13 +149,14 @@
     "javascript.inlayHints.parameterTypes.enabled": true,
     "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
     "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
-    // "javascript.inlayHints.enumMemberValues.enabled": true,
     "typescript.inlayHints.parameterNames.enabled": "all",
     "typescript.inlayHints.parameterTypes.enabled": true,
     "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
     "typescript.inlayHints.variableTypes.enabled": true,
     "typescript.inlayHints.enumMemberValues.enabled": true,
     "typescript.tsserver.experimental.enableProjectDiagnostics": false,
+    "javascript.inlayHints.variableTypes.enabled": true,
+    "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
     // === Python Analysis ===
     "python.analysis.typeCheckingMode": "standard",
     // === Workbench Appearance ===
