@@ -635,7 +635,43 @@
     "window.titleBarStyle": "native",
     "[python]": {
         "editor.defaultFormatter": "charliermarsh.ruff"
+    "[sql]": {
+        // "editor.defaultFormatter": "ms-ossdata.vscode-pgsql"
+        "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"
+        // "editor.defaultFormatter": "ReneSaarsoo.sql-formatter-vsc"
     },
     "cursor.composer.shouldAllowCustomModes": true,
     // "window.customTitleBarVisibility": "never",
+    "pgsql.serverGroups": [
+        {
+            "name": "Servers",
+            "id": "EC756AC0-FA78-4B38-B309-099E009ED135",
+            "isDefault": true
+        }
+    ],
+    "pgsql.connections": [
+        {
+            "id": "E38A9A53-3127-4474-9C0B-CFE4FA6E3BB6",
+            "groupId": "EC756AC0-FA78-4B38-B309-099E009ED135",
+            "authenticationType": "SqlLogin",
+            "connectTimeout": 15,
+            "applicationName": "vscode-pgsql",
+            "clientEncoding": "utf8",
+            "sslmode": "disable",
+            "server": "Luch_DB",
+            "user": "testuser",
+            "password": "",
+            "profileName": "Luch_DB, <default> (testuser)",
+            "hostaddr": "127.0.0.1",
+            "expiresOn": 0,
+            "profileSource": 0,
+            "emptyPasswordInput": false,
+            "database": "luch_shop",
+            "displayName": "Luch_DB, <default> (testuser)",
+            "savePassword": true
+        }
+    ],
+    "Prettier-SQL.keywordCase": "upper",
+    "Prettier-SQL.SQLFlavourOverride": "postgresql"
 }
+
