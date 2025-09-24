@@ -187,7 +187,7 @@
     "hediet.vscode-drawio.resizeImages": null,
     "tabnine.experimentalAutoImports": true,
     // === VSCode Neovim Extension ===
-    "vscode-neovim.normalSelectionDebounceTime": 150,
+    "vscode-neovim.normalSelectionDebounceTime": 60,
     "vscode-neovim.useWSL": true,
     "vscode-neovim.wslDistribution": "ubuntu",
     "vscode-neovim.highlightGroups.highlights": {
