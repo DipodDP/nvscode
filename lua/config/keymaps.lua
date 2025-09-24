@@ -98,8 +98,8 @@ map("v", "DD", '"_d', opts)
 
 -- buffers
 map("n", "X", ":bdelete!<CR>", opts)
-map("n", "L", ":BufferLineCycleNext<CR>", opts)
-map("n", "H", ":BufferLineCyclePrev<CR>", opts)
+-- map("n", "L", ":BufferLineCycleNext<CR>", opts)
+-- map("n", "H", ":BufferLineCyclePrev<CR>", opts)
 map("n", "gl", vim.diagnostic.open_float, opts)
 map("n", ";p", '"0p', opts)
 map("n", ";c", '"_c', opts)
