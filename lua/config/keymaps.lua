@@ -98,6 +98,8 @@ map("v", "DD", '"_d', opts)
 
 -- buffers
 map("n", "X", ":bdelete!<CR>", opts)
+map("n", "L", ":BufferLineCycleNext<CR>", opts)
+map("n", "H", ":BufferLineCyclePrev<CR>", opts)
 map("n", "gl", vim.diagnostic.open_float, opts)
 map("n", ";p", '"0p', opts)
 map("n", ";c", '"_c', opts)
@@ -105,6 +107,22 @@ map("n", ";d", '"_d', opts)
 map("n", "<esc>", ":set hlsearch!<CR>")
 
 map("n", "gA", vim.lsp.codelens.run, opts)
+map(
+  "n",
+  "gv",
+  "<cmd>vsplit | lua vim.lsp.buf.definition({on_list = function(items) vim.fn.setqflist({}, 'r', items) vim.cmd('cfirst') end})<cr>",
+  opts
+)
+map("n", "ga", function()
+  require("tiny-code-action").code_action()
+end, opts)
+map("n", "<leader>st", LazyVim.pick("live_grep"), opts)
+-- map("n", "<leader>sT", "<cmd>TodoTelescope<cr>", opts)
+map("n", "<leader>sL", require("config.telescope").multigrep, opts)
+map("n", "<leader>cs", "<cmd>Outline<cr>", opts)
+map("n", "<c-`>", function()
+  Snacks.terminal()
+end, { desc = "Toggle Terminal" })
 
 if vim.g.vscode then
   local opts = { silent = true, remap = true }

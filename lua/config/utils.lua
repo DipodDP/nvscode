@@ -170,13 +170,14 @@ M.kind_icons = {
   Implementation = "",
   Key = "",
   Keyword = "",
+  Macro = " 󰁌 ",
   Method = "ƒ",
   Module = "",
   Namespace = "󰦮",
   Null = "",
   Number = "󰎠",
   Object = "",
-  Operator = "󰪚",
+  Operator = "",
   Package = "",
   Parameter = "",
   Property = "",
@@ -184,8 +185,8 @@ M.kind_icons = {
   Snippet = "", --" ",""," ","󱄽 "
   Spell = "󰓆",
   StaticMethod = "",
-  String = "󰅳", -- " ","𝓐 " ," " ,"󰅳 "
-  Struct = "󰙅",
+  String = "󰅳", -- " ","𝓐 " ," " ,"󰅳 "   
+  Struct = "󰙅", -- "  "
   Supermaven = "",
   TabNine = "󰏚",
   Text = "󰉿",
@@ -199,6 +200,20 @@ M.kind_icons = {
 M.is_mcp_present = function()
   if vim.uv.fs_stat(vim.fn.expand("~/.mcpservers.json")) then
     return true
+  end
+  return false
+end
+
+M.is_online = function()
+  if vim.env.NVIM_OFFLINE == "1" then
+    return false
+  end
+  local hosts_to_try = { "api.github.com" }
+  for _, host in ipairs(hosts_to_try) do
+    local ok, res = pcall(vim.loop.getaddrinfo, host, nil, { socktype = "stream" })
+    if ok and res and #res > 0 then
+      return true
+    end
   end
   return false
 end

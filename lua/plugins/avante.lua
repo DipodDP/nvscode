@@ -1,4 +1,5 @@
 local avante_prompts = require("config.prompts").avante
+local is_online = require("config.utils").is_online
 local function create_avante_call(prompt, use_context)
   if use_context then
     local filetype = vim.bo.filetype ~= "" and vim.bo.filetype or "unknown"
@@ -20,6 +21,7 @@ return {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
+    enabled = is_online,
     config = function()
       require("copilot").setup({
         filetypes = {
@@ -47,6 +49,7 @@ return {
     "yetone/avante.nvim",
     -- event = "BufReadPost",
     version = false,
+    enabled = is_online,
     opts = function()
       local opts = {
         provider = "copilot",
@@ -54,27 +57,32 @@ return {
           enabled = false,
         },
         cursor_applying_provider = "copilot",
-        copilot = {
-          endpoint = "https://api.githubcopilot.com",
-          model = "claude-3.7-sonnet",
-          proxy = nil,
-          allow_insecure = false,
-          timeout = 60000,
-          temperature = 0,
-          max_tokens = 32768,
-          disable_tools = true,
-          telemetry = false,
-          disabled_tools = {
-            "list_files",
-            "search_files",
-            "read_file",
-            "create_file",
-            "rename_file",
-            "delete_file",
-            "create_dir",
-            "rename_dir",
-            "delete_dir",
-            "bash",
+        providers = {
+          copilot = {
+            endpoint = "https://api.githubcopilot.com",
+            model = "claude-sonnet-4",
+            -- model = "gpt-5",
+            proxy = nil,
+            allow_insecure = false,
+            timeout = 60000,
+            extra_request_body = {
+              temperature = 0,
+              max_tokens = 128000,
+            },
+            disable_tools = true,
+            telemetry = false,
+            disabled_tools = {
+              "list_files",
+              "search_files",
+              "read_file",
+              "create_file",
+              "rename_file",
+              "delete_file",
+              "create_dir",
+              "rename_dir",
+              "delete_dir",
+              "bash",
+            },
           },
         },
         suggestion = {
@@ -135,7 +143,7 @@ return {
         --     num_ctx = 32768,
         --   },
         -- }
-        opts.copilot.disable_tools = false
+        opts.providers.copilot.disable_tools = false
         opts.auto_suggestions_provider = "copilot"
         opts.memory_summary_provider = "copilot"
         -- opts.cursor_applying_provider = "ollama"
