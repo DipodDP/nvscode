@@ -9,8 +9,6 @@
 
 local aucmd = vim.api.nvim_create_autocmd
 
-aucmd({ "InsertEnter", "CmdlineEnter" }, { pattern = "*", command = "set norelativenumber" })
-aucmd({ "InsertLeave", "CmdlineLeave" }, { pattern = "*", command = "set relativenumber" })
 
 if not vim.g.vscode then
   -- perform osc52 yank
@@ -37,7 +35,8 @@ vim.api.nvim_create_user_command("OverseerRestartLast", function()
 end, {})
 
 -- Set relative line numbers in normal mode
-aucmd({ "InsertEnter" }, {
+-- and absolute line numbers in insert mode and in cmdline
+aucmd({ "InsertEnter", "CmdlineEnter", "BufLeave"}, {
   callback = function()
     local fname = vim.fn.bufname()
     if fname == "copilot-chat" or vim.bo.buftype == "nofile" then
@@ -46,9 +45,7 @@ aucmd({ "InsertEnter" }, {
     vim.opt_local.relativenumber = false
   end,
 })
-
--- and absolute line numbers in insert mode
-aucmd({ "InsertLeave" }, {
+aucmd({ "InsertLeave", "CmdlineLeave", "BufEnter" }, {
   callback = function()
     local fname = vim.fn.bufname()
     if fname == "copilot-chat" or vim.bo.buftype == "nofile" then
