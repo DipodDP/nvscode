@@ -539,9 +539,12 @@
     // Stats and telemetry:
     "telemetry.telemetryLevel": "off",
     // Terminal:
+    "terminal.integrated.hideOnStartup": "always",
+    "terminal.integrated.enablePersistentSessions": false,
+    "terminal.integrated.persistentSessionReviveProcess": "never",
     // "terminal.integrated.shellIntegration.enabled": false,
     // "terminal.integrated.shellIntegration.decorationsEnabled": "never",
-    // "terminal.integrated.stickyScroll.enabled": false,
+    "terminal.integrated.stickyScroll.enabled": false,
     // "terminal.integrated.suggest.enabled": false,
     "terminal.integrated.enableMultiLinePasteWarning": "never",
     // "terminal.integrated.defaultProfile.osx": "zsh",

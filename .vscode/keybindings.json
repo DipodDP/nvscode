@@ -94,6 +94,7 @@
     {
         "key": "ctrl+h",
         "command": "workbench.action.navigateLeft",
+        "when": "!terminalFocus && !editorHasSelection"
     },
     {
         "key": "ctrl+l",
