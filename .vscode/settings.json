@@ -1,6 +1,6 @@
-{
+
     // === Core VS Code Settings ===
-    "files.autoSave": "afterDelay",
+    "files.autoSave": "onFocusChange",
     "editor.formatOnSave": false,
     "editor.lineNumbers": "relative",
     "editor.fontFamily": "BitstromWera Nerd Font Mono",
@@ -136,7 +136,19 @@
                     "foreground": "#E46876",
                     "fontStyle": "italic"
                 },
+                "selfParameter.definition": {
+                    "foreground": "#E46876",
+                    "fontStyle": "italic"
+                },
+                "clsParameter": {
+                    "foreground": "#E46876",
+                    "fontStyle": "italic"
+                },
                 "clsParameter.declaration": {
+                    "foreground": "#E46876",
+                    "fontStyle": "italic"
+                },
+                "clsParameter.definition": {
                     "foreground": "#E46876",
                     "fontStyle": "italic"
                 }
@@ -187,9 +199,8 @@
     "hediet.vscode-drawio.resizeImages": null,
     "tabnine.experimentalAutoImports": true,
     // === VSCode Neovim Extension ===
-    "vscode-neovim.normalSelectionDebounceTime": 60,
+    "vscode-neovim.normalSelectionDebounceTime": 80,
     "vscode-neovim.useWSL": true,
-    "vscode-neovim.wslDistribution": "ubuntu",
     "vscode-neovim.highlightGroups.highlights": {
         "IncSearch": {
             "backgroundColor": "theme.editor.findMatchBackground"
@@ -224,7 +235,7 @@
         "a",
         // "b",
         "c",
-        "d",
+        // "d",
         "e",
         "f",
         "h",
@@ -646,13 +657,6 @@
     },
     "cursor.composer.shouldAllowCustomModes": true,
     // "window.customTitleBarVisibility": "never",
-    "pgsql.serverGroups": [
-        {
-            "name": "Servers",
-            "id": "EC756AC0-FA78-4B38-B309-099E009ED135",
-            "isDefault": true
-        }
-    ],
     "Prettier-SQL.keywordCase": "upper",
     "Prettier-SQL.SQLFlavourOverride": "postgresql"
 }
