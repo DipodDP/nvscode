@@ -8,9 +8,6 @@ local opts = { noremap = true, silent = true }
 map("n", "C-o", "<NOP>")
 map("n", "C-i", "<NOP>")
 
--- Exit insert mode
-map("i", "jk", "<ESC>")
-map("i", "jj", "<ESC>")
 -- Move text up and down
 map("x", "J", ":move '>+1<CR>gv")
 map("x", "K", ":move '<-2<CR>gv")
@@ -95,7 +92,6 @@ map("n", ";c", '"_c', opts)
 map("n", ";d", '"_d', opts)
 
 if vim.g.vscode then
-  -- local opts = { silent = true, remap = true }
   require("code.keymaps")
 else
   local term = require("snacks.terminal")

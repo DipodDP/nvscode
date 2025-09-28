@@ -163,6 +163,17 @@
         "command": "workbench.action.toggleMaximizedPanel",
         "when": "terminalFocus"
     },
+    // Navigation in referencies
+    {
+        "key": "ctrl+j",
+        "command": "list.focusDown",
+        "when": "listFocus && !inputFocus"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "list.focusUp",
+        "when": "listFocus && !inputFocus"
+    },
     // harpoon
     {
         "key": "ctrl+h",
@@ -189,6 +200,15 @@
         "key": "ctrl+l",
         "command": "aichat.newchataction",
         "when": "editorFocus || auxiliaryBarFocus"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "-aipopup.action.modal.generate",
+    },
+    {
+        "key": "ctrl+k",
+        "command": "aipopup.action.modal.generate",
+        "when": "editorFocus && !composerBarIsVisible && neovim.mode == 'insert'"
     },
     {
         "key": "ctrl+shift+k",

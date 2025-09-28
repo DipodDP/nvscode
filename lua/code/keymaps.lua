@@ -47,6 +47,8 @@ map({ "n", "v" }, "k", "gk", opts)
 map({ "n", "v" }, "<Down>", "gj", opts)
 map({ "n", "v" }, "<Up>", "gk", opts)
 
+map({ "n" }, "u", "u<ESC>", opts)
+
 map({ "n", "x", "i" }, "<C-d>", function()
   vscode.with_insert(function()
     vscode.action("editor.action.addSelectionToNextFindMatch")
