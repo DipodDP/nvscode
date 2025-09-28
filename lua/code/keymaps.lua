@@ -1,5 +1,6 @@
 local map = vim.keymap.set
 local opts = { silent = true, remap = true }
+local vscode = require("vscode")
 
 -- Search
 map("n", "<LEADER>ff", '<CMD>call VSCodeNotify("workbench.action.quickOpen")<CR>')
@@ -45,3 +46,14 @@ map({ "n", "v" }, "j", "gj", opts)
 map({ "n", "v" }, "k", "gk", opts)
 map({ "n", "v" }, "<Down>", "gj", opts)
 map({ "n", "v" }, "<Up>", "gk", opts)
+
+map({ "n", "x", "i" }, "<C-d>", function()
+  vscode.with_insert(function()
+    vscode.action("editor.action.addSelectionToNextFindMatch")
+  end)
+end)
+map({ "n", "x" }, "<leader>r", function()
+  vscode.with_insert(function()
+    vscode.action("editor.action.refactor")
+  end)
+end)

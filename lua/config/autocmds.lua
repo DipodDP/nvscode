@@ -9,7 +9,6 @@
 
 local aucmd = vim.api.nvim_create_autocmd
 
-
 if not vim.g.vscode then
   -- perform osc52 yank
   aucmd("TextYankPost", {
@@ -20,6 +19,42 @@ if not vim.g.vscode then
       if vim.v.event.operator == "d" then
         vim.fn.setreg("+", vim.fn.getreg("0"))
       end
+    end,
+  })
+  -- Set relative line numbers in normal mode
+  -- and absolute line numbers in insert mode and in cmdline
+  aucmd({ "InsertEnter", "CmdlineEnter", "BufLeave" }, {
+    callback = function()
+      local fname = vim.fn.bufname()
+      if fname == "copilot-chat" or vim.bo.buftype == "nofile" then
+        return
+      end
+      vim.opt_local.relativenumber = false
+    end,
+  })
+  aucmd({ "InsertLeave", "CmdlineLeave", "BufEnter" }, {
+    callback = function()
+      local fname = vim.fn.bufname()
+      if fname == "copilot-chat" or vim.bo.buftype == "nofile" then
+        return
+      end
+      vim.opt_local.relativenumber = true
+    end,
+  })
+else
+  local vscode = require("vscode")
+  -- Set relative line numbers in normal mode
+  -- and absolute line numbers in insert mode and in cmdline
+  vim.opt.number = false
+  -- vscode.update_config("editor.lineNumbers", "relative", "workspace")
+  aucmd({ "InsertEnter", "CmdlineEnter" }, {
+    callback = function()
+      vscode.update_config("editor.lineNumbers", "on", "workspace")
+    end,
+  })
+  aucmd({ "InsertLeave", "CmdlineLeave" }, {
+    callback = function()
+      vscode.update_config("editor.lineNumbers", "relative", "workspace")
     end,
   })
 end
@@ -33,27 +68,6 @@ vim.api.nvim_create_user_command("OverseerRestartLast", function()
     overseer.run_action(tasks[1], "restart")
   end
 end, {})
-
--- Set relative line numbers in normal mode
--- and absolute line numbers in insert mode and in cmdline
-aucmd({ "InsertEnter", "CmdlineEnter", "BufLeave"}, {
-  callback = function()
-    local fname = vim.fn.bufname()
-    if fname == "copilot-chat" or vim.bo.buftype == "nofile" then
-      return
-    end
-    vim.opt_local.relativenumber = false
-  end,
-})
-aucmd({ "InsertLeave", "CmdlineLeave", "BufEnter" }, {
-  callback = function()
-    local fname = vim.fn.bufname()
-    if fname == "copilot-chat" or vim.bo.buftype == "nofile" then
-      return
-    end
-    vim.opt_local.relativenumber = true
-  end,
-})
 
 -- Terminal
 aucmd("TermOpen", {
