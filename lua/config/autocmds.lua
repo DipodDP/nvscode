@@ -46,15 +46,14 @@ else
   -- Set relative line numbers in normal mode
   -- and absolute line numbers in insert mode and in cmdline
   vim.opt.number = false
-  -- vscode.update_config("editor.lineNumbers", "relative", "workspace")
   aucmd({ "InsertEnter", "CmdlineEnter" }, {
     callback = function()
-      vscode.update_config("editor.lineNumbers", "on", "workspace")
+      vscode.update_config("editor.lineNumbers", "on", "global")
     end,
   })
   aucmd({ "InsertLeave", "CmdlineLeave" }, {
     callback = function()
-      vscode.update_config("editor.lineNumbers", "relative", "workspace")
+      vscode.update_config("editor.lineNumbers", "relative", "global")
     end,
   })
 end
