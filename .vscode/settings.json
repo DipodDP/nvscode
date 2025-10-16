@@ -1,4 +1,4 @@
-
+{
     // === Core VS Code Settings ===
     "files.autoSave": "onFocusChange",
     "editor.formatOnSave": false,
@@ -645,8 +645,8 @@
     //         "margin-left": "50px !important",
     //     },
     // },
-    "window.menuBarVisibility": "toggle",
-    "window.titleBarStyle": "native",
+    // "window.menuBarVisibility": "toggle",
+    // "window.titleBarStyle": "native",
     "[python]": {
         "editor.defaultFormatter": "charliermarsh.ruff"
     },

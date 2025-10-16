@@ -84,13 +84,28 @@
         "command": "copyRelativeFilePath",
         "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
     },
-    // sidebar visibility
+    // Sidebar visibility
     {
         "key": "ctrl+shift+e",
         "command": "workbench.action.toggleSidebarVisibility",
         "when": "explorerViewletFocus"
     },
-    // vim-style window navigation
+    // Panel and terminal visibility
+    {
+        "key": "ctrl+j",
+        "command": "-workbench.action.togglePanel"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.togglePanel",
+        "when": "!terminalFocus"
+    },
+    {
+        "key": "ctrl+alt+m",
+        "command": "workbench.action.toggleMaximizedPanel",
+        "when": "terminalFocus"
+    },
+    // Vim-style window navigation
     {
         "key": "ctrl+h",
         "command": "workbench.action.navigateLeft",
@@ -157,11 +172,6 @@
     {
         "key": "ctrl+i",
         "command": "composerMode.agent"
-    },
-    {
-        "key": "ctrl+alt+m",
-        "command": "workbench.action.toggleMaximizedPanel",
-        "when": "terminalFocus"
     },
     // Navigation in referencies
     {
