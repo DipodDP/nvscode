@@ -199,7 +199,7 @@
     "hediet.vscode-drawio.resizeImages": null,
     "tabnine.experimentalAutoImports": true,
     // === VSCode Neovim Extension ===
-    "vscode-neovim.normalSelectionDebounceTime": 80,
+    "vscode-neovim.normalSelectionDebounceTime": 90,
     "vscode-neovim.useWSL": true,
     "vscode-neovim.highlightGroups.highlights": {
         "IncSearch": {
@@ -580,7 +580,7 @@
     // "workbench.tree.enableStickyScroll": false,
     // "workbench.editor.highlightModifiedTabs": false,
     // "workbench.editor.showIcons": false,
-    // "workbench.editor.showTabs": "single",
+    "workbench.editor.showTabs": "single",
     // "workbench.editor.decorations.badges": false,
     // "workbench.editor.decorations.colors": false,
     // "workbench.editor.enablePreview": false,
@@ -648,6 +648,7 @@
     // "window.menuBarVisibility": "toggle",
     // "window.titleBarStyle": "native",
     "[python]": {
+    
         "editor.defaultFormatter": "charliermarsh.ruff"
     },
     "[sql]": {
@@ -658,5 +659,26 @@
     "cursor.composer.shouldAllowCustomModes": true,
     // "window.customTitleBarVisibility": "never",
     "Prettier-SQL.keywordCase": "upper",
-    "Prettier-SQL.SQLFlavourOverride": "postgresql"
+    "Prettier-SQL.SQLFlavourOverride": "postgresql",
+    // "claudeCode.useTerminal": true,
+    "http.noProxy": [
+        "winhost",
+        "localhost",
+        "127.0.0.1",
+        "::1"
+    ],
+    "http.proxySupport": "on",
+    "http.proxy": "http://winhost:10809",
+    "http.proxyStrictSSL": false,
+    "http.systemCertificates": true,
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "jsonc": false
+    },
+    "security.workspace.trust.untrustedFiles": "open",
+    "git.openRepositoryInParentFolders": "always",
+    "chat.commandCenter.enabled": false
 }

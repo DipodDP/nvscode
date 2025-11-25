@@ -218,7 +218,7 @@
     {
         "key": "ctrl+k",
         "command": "aipopup.action.modal.generate",
-        "when": "editorFocus && !composerBarIsVisible && neovim.mode == 'insert'"
+        "when": "editorFocus && !composerBarIsVisible && neovim.mode == 'insert' && !codeActionMenuVisible && !inQuickOpen && !suggestWidgetVisible"
     },
     {
         "key": "ctrl+shift+k",
