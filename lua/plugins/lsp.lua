@@ -8,16 +8,15 @@ local icons = {
 return {
   "neovim/nvim-lspconfig",
   opts = function(_, opts)
-    local Keys = require("lazyvim.plugins.lsp.keymaps").get()
-    -- stylua: ignore
-    vim.list_extend(Keys, {
-      { "gd", "<cmd>Trouble lsp_definitions<cr>",      desc = "Goto Definition",        has = "definition" },
-      { "gr", "<cmd>Trouble lsp_references<cr>",       desc = "References",             nowait = true },
-      { "gI", "<cmd>Trouble lsp_implementations<cr>",  desc = "Goto Implementation",    nowait = true },
-      { "gy", "<cmd>Trouble lsp_type_definitions<cr>", desc = "Goto T[y]pe Definition", nowait = true },
-    })
     opts = opts or {}
-
+    opts.servers["*"] = {
+      keys = {
+        { "gd", "<cmd>Trouble lsp_definitions<cr>", desc = "Goto Definition", has = "definition" },
+        { "gr", "<cmd>Trouble lsp_references<cr>", desc = "References", nowait = true },
+        { "gI", "<cmd>Trouble lsp_implementations<cr>", desc = "Goto Implementation", nowait = true },
+        { "gy", "<cmd>Trouble lsp_type_definitions<cr>", desc = "Goto T[y]pe Definition", nowait = true },
+      },
+    }
     opts.diagnostics = {
       virtual_text = false,
       underline = false,
@@ -31,9 +30,9 @@ return {
         },
         values = {
           { name = "DiagnosticSignError", text = icons.error },
-          { name = "DiagnosticSignWarn",  text = icons.warn },
-          { name = "DiagnosticSignInfo",  text = icons.info },
-          { name = "DiagnosticSignHint",  text = icons.hint },
+          { name = "DiagnosticSignWarn", text = icons.warn },
+          { name = "DiagnosticSignInfo", text = icons.info },
+          { name = "DiagnosticSignHint", text = icons.hint },
         },
       },
     }
@@ -44,19 +43,58 @@ return {
       enabled = false,
     }
     -- opts.servers = opts.servers or {}
+    opts.servers.jsonls = {
+      before_init = function(_, new_config)
+        new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+        vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
+      end,
+      settings = {
+        json = {
+          format = {
+            enable = true,
+          },
+          validate = { enable = true },
+        },
+      },
+    }
     opts.servers.yamlls = {
       cmd = { "yaml-language-server", "--stdio" },
       filetypes = { "yaml", "gha", "dependabot", "yaml", "yaml.docker-compose", "yaml.gitlab" },
+      capabilities = {
+        textDocument = {
+          foldingRange = {
+            dynamicRegistration = false,
+            lineFoldingOnly = true,
+          },
+        },
+      },
+      before_init = function(_, new_config)
+        new_config.settings.yaml.schemas = vim.tbl_deep_extend("force", new_config.settings.yaml.schemas or {
+          kubernetes = {
+            "daemon.{yml,yaml}",
+            "manager.{yml,yaml}",
+            "restapi.{yml,yaml}",
+            "kubectl-edit*.yaml",
+          },
+          ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master/configmap.json"] = "*onfigma*.{yml,yaml}",
+          ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master/deployment.json"] = "*eployment*.{yml,yaml}",
+          ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master/service.json"] = "*ervic*.{yml,yaml}",
+          ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master/ingress.json"] = "*ngres*.{yml,yaml}",
+          ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master/secret.json"] = "*ecre*.{yml,yaml}",
+        }, require("schemastore").yaml.schemas())
+      end,
       root_markers = { ".git" },
       settings = {
         redhat = { telemetry = { enabled = false } },
         yaml = {
+          keyOrdering = false,
           schemaStore = {
-            enable = false,
-            url = "",
+            enable = true,
+            url = "https://www.schemastore.org/api/json/catalog.json",
           },
-          schemas = require("schemastore").yaml.schemas(),
+          -- schemas = require("schemastore").yaml.schemas(),
           validate = true,
+          hover = true,
           format = {
             enable = false, -- delegate to conform.nvim
           },
@@ -97,9 +135,9 @@ return {
         offsetEncoding = { "utf-16" },
         textDocument = {
           completion = {
-            editsNearCursor = true
-          }
-        }
+            editsNearCursor = true,
+          },
+        },
       },
       cmd = {
         "clangd",
@@ -176,7 +214,7 @@ return {
           },
         },
       }
-      opts.setup.pylance = function(_, opts)
+      opts.setup.pylance = function(_, _)
         require("lspconfig").pylance.setup({
           cmd = {
             "node",
