@@ -645,7 +645,7 @@
     //         "margin-left": "50px !important",
     //     },
     // },
-    // "window.menuBarVisibility": "toggle",
+    "window.menuBarVisibility": "toggle",
     // "window.titleBarStyle": "native",
     "[python]": {
     
@@ -656,21 +656,19 @@
         "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"
         // "editor.defaultFormatter": "ReneSaarsoo.sql-formatter-vsc"
     },
-    "cursor.composer.shouldAllowCustomModes": true,
-    // "window.customTitleBarVisibility": "never",
     "Prettier-SQL.keywordCase": "upper",
     "Prettier-SQL.SQLFlavourOverride": "postgresql",
-    // "claudeCode.useTerminal": true,
-    "http.noProxy": [
-        "winhost",
-        "localhost",
-        "127.0.0.1",
-        "::1"
-    ],
-    "http.proxySupport": "on",
-    "http.proxy": "http://winhost:10809",
-    "http.proxyStrictSSL": false,
-    "http.systemCertificates": true,
+    // === Proxy Settings ===
+    // "http.noProxy": [
+    //     "winhost",
+    //     "localhost",
+    //     "127.0.0.1",
+    //     "::1"
+    // ],
+    // "http.proxySupport": "on",
+    // "http.proxy": "http://winhost:10809",
+    // "http.proxyStrictSSL": false,
+    // "http.systemCertificates": true,
     "github.copilot.enable": {
         "*": false,
         "plaintext": false,
@@ -680,5 +678,9 @@
     },
     "security.workspace.trust.untrustedFiles": "open",
     "git.openRepositoryInParentFolders": "always",
-    "chat.commandCenter.enabled": false
+    "chat.commandCenter.enabled": false,
+    "claudeCode.preferredLocation": "sidebar",
+    // "cursor.composer.shouldAllowCustomModes": true,
+    "claudeCode.useTerminal": false,
+    // "window.customTitleBarVisibility": "never",
 }
